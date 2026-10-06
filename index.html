@@ -1,1 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Invitación - Cumpleaños</title>
+
+    <meta name="description" content="Estás invitado a mi cumpleaños">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: #111;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            font-family: inherit;
+        }
+
+        /* =========================
+           PORTADA
+        ========================= */
+
+        .hero {
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 50% 35%, #3a321d 0%, #17140d 40%, #080808 80%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle, rgba(212,175,55,.15) 1px, transparent 1px);
+            background-size: 35px 35px;
+            opacity: .35;
+            animation: particles 15s linear infinite;
+        }
+
+        @keyframes particles {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-35px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .small-title {
+            letter-spacing: 6px;
+            font-size: 13px;
+            color: #d4af37;
+            margin-bottom: 25px;
+            animation: fadeDown 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 15vw, 110px);
+            line-height: .9;
+            font-weight: 400;
+            color: #f5e6b3;
+            text-shadow: 0 0 30px rgba(212,175,55,.2);
+            animation: titleIn 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+        }
+
+        .hero-date {
+            margin-top: 35px;
+            font-size: 18px;
+            letter-spacing: 4px;
+            color: #fff;
+            animation: fadeUp 1s .5s ease both;
+        }
+
+        .scroll-button {
+            margin-top: 50px;
+            display: inline-block;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 3px;
+            animation: floating 2s ease-in-out infinite;
+        }
+
+        @keyframes titleIn {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+            padding: 90px 25px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #d4af37;
+            font-size: 13px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .section-text {
+            text-align: center;
+            color: #aaa;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* =========================
+           CUENTA REGRESIVA
+        ========================= */
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 650px;
+            margin: 40px auto 0;
+        }
+
+        .time-box {
+            text-align: center;
+            padding: 20px 5px;
+            border: 1px solid rgba(212,175,55,.25);
+            background: rgba(255,255,255,.03);
+        }
+
+        .time-number {
+            display: block;
+            font-size: 35px;
+            color: #d4af37;
+        }
+
+        .time-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #999;
+        }
+
+        /* =========================
+           UBICACIÓN
+        ========================= */
+
+        .location {
+            background: #15130f;
+            max-width: none;
+        }
+
+        .location-inner {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .map-button,
+        .guestbook-button,
+        .whatsapp-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 16px 28px;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .map-button:hover,
+        .guestbook-button:hover,
+        .whatsapp-button:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+        /* =========================
+           GALERÍA
+        ========================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 35px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 2px;
+            background: #222;
+        }
+
+        /* =========================
+           CONFIRMACIÓN
+        ========================= */
+
+        .confirmation {
+            background: #0b0b0b;
+            max-width: none;
+            text-align: center;
+        }
+
+        .confirmation-inner {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery img {
+                height: 280px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PORTADA -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                ESTÁS INVITADO
+            </div>
+
+            <h1>
+                Mi<br>
+                Cumple
+            </h1>
+
+            <div class="hero-date">
+                24 · 10 · 2026
+            </div>
+
+            <a href="#evento" class="scroll-button">
+                DESCUBRIR INVITACIÓN ↓
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- INFORMACIÓN -->
+
+    <section id="evento">
+
+        <div class="section-title">
+            CELEBREMOS JUNTOS
+        </div>
+
+        <h2 class="section-heading">
+            ¡Te espero!
+        </h2>
+
+        <p class="section-text">
+            Quiero compartir este momento especial con vos.
+            Prepará las ganas de pasarla increíble porque
+            se viene una noche para recordar.
+        </p>
+
+        <div class="countdown">
+
+            <div class="time-box">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">DÍAS</span>
+            </div>
+
+            <div class="time-box">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">HORAS</span>
+            </div>
+
+            <div class="time-box">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">MINUTOS</span>
+            </div>
+
+            <div class="time-box">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">SEGUNDOS</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- UBICACIÓN -->
+
+    <section class="location">
+
+        <div class="location-inner">
+
+            <div class="section-title">
+                ¿DÓNDE?
+            </div>
+
+            <h2 class="section-heading">
+                Nos vemos ahí
+            </h2>
+
+            <p class="section-text">
+                Moyano 204<br>
+                Pico Truncado, Santa Cruz
+            </p>
+
+            <a
+                class="map-button"
+                href="https://www.google.com/maps/place/46%C2%B047'55.0%22S+67%C2%B056'58.6%22W/@-46.7985965,-67.9506886,18z"
+                target="_blank"
+            >
+                ABRIR EN GOOGLE MAPS
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALERÍA -->
+
+    <section>
+
+        <div class="section-title">
+            MOMENTOS
+        </div>
+
+        <h2 class="section-heading">
+            Nuestra galería
+        </h2>
+
+        <p class="section-text">
+            Acá van a aparecer las fotos del evento.
+        </p>
+
+        <div class="gallery">
+
+            <img
+                src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=80"
+                alt="Celebración"
+            >
+
+            <img
+                src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80"
+                alt="Celebración"
+            >
+
+            <img
+                src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=900&q=80"
+                alt="Celebración"
+            >
+
+            <img
+                src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=80"
+                alt="Celebración"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- LIBRO DE FIRMAS -->
+
+    <section>
+
+        <div class="section-title">
+            DEJAME UN SALUDO
+        </div>
+
+        <h2 class="section-heading">
+            Libro de firmas
+        </h2>
+
+        <p class="section-text">
+            Podés dejarme un saludo acompañado de una foto.
+        </p>
+
+        <div style="text-align:center;">
+
+            <a
+                class="guestbook-button"
+                href="https://gnzehijos.github.io/libro-de-firmas/"
+                target="_blank"
+            >
+                SUBIR SALUDO + FOTO
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONFIRMACIÓN -->
+
+    <section class="confirmation">
+
+        <div class="confirmation-inner">
+
+            <div class="section-title">
+                CONFIRMÁ TU ASISTENCIA
+            </div>
+
+            <h2 class="section-heading">
+                ¿Venís?
+            </h2>
+
+            <p class="section-text">
+                Confirmá tu asistencia para que podamos
+                preparar todo de la mejor manera.
+            </p>
+
+            <button
+                class="whatsapp-button"
+                onclick="abrirConfirmacion()"
+            >
+                CONFIRMAR ASISTENCIA
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        HECHO CON ♥
+    </footer>
+
+
+    <!-- =========================
+         MODAL CONFIRMACIÓN
+    ========================= -->
+
+    <div
+        id="modal"
+        style="
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.85);
+            z-index:9999;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+        "
+    >
+
+        <div
+            style="
+                width:100%;
+                max-width:420px;
+                background:#15130f;
+                border:1px solid rgba(212,175,55,.4);
+                padding:35px 25px;
+                text-align:center;
+            "
+        >
+
+            <div class="section-title">
+                CONFIRMACIÓN
+            </div>
+
+            <h2 class="section-heading">
+                ¿Quiénes vienen?
+            </h2>
+
+
+            <!-- ADULTOS -->
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    margin:30px 0;
+                "
+            >
+
+                <span>Adultos</span>
+
+                <div style="display:flex;align-items:center;gap:20px;">
+
+                    <button
+                        onclick="cambiarCantidad('adultos',-1)"
+                        style="width:38px;height:38px;"
+                    >
+                        −
+                    </button>
+
+                    <span id="adultos">
+                        1
+                    </span>
+
+                    <button
+                        onclick="cambiarCantidad('adultos',1)"
+                        style="width:38px;height:38px;"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENORES -->
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    margin:30px 0;
+                "
+            >
+
+                <span>Menores</span>
+
+                <div style="display:flex;align-items:center;gap:20px;">
+
+                    <button
+                        onclick="cambiarCantidad('menores',-1)"
+                        style="width:38px;height:38px;"
+                    >
+                        −
+                    </button>
+
+                    <span id="menores">
+                        0
+                    </span>
+
+                    <button
+                        onclick="cambiarCantidad('menores',1)"
+                        style="width:38px;height:38px;"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                onclick="confirmarWhatsApp()"
+                class="whatsapp-button"
+                style="background:transparent;cursor:pointer;"
+            >
+                CONFIRMAR POR WHATSAPP
+            </button>
+
+
+            <br>
+
+
+            <button
+                onclick="cerrarConfirmacion()"
+                style="
+                    margin-top:20px;
+                    background:none;
+                    border:none;
+                    color:#777;
+                    cursor:pointer;
+                "
+            >
+                CANCELAR
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           CUENTA REGRESIVA
+        ========================= */
+
+        const fechaEvento = new Date("2026-10-24T21:00:00");
+
+        function actualizarCuentaRegresiva() {
+
+            const ahora = new Date();
+
+            const diferencia = fechaEvento - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                return;
+            }
+
+            const dias = Math.floor(
+                diferencia / (1000 * 60 * 60 * 24)
+            );
+
+            const horas = Math.floor(
+                (diferencia / (1000 * 60 * 60)) % 24
+            );
+
+            const minutos = Math.floor(
+                (diferencia / (1000 * 60)) % 60
+            );
+
+            const segundos = Math.floor(
+                (diferencia / 1000) % 60
+            );
+
+            document.getElementById("days").textContent =
+                String(dias).padStart(2, "0");
+
+            document.getElementById("hours").textContent =
+                String(horas).padStart(2, "0");
+
+            document.getElementById("minutes").textContent =
+                String(minutos).padStart(2, "0");
+
+            document.getElementById("seconds").textContent =
+                String(segundos).padStart(2, "0");
+        }
+
+        actualizarCuentaRegresiva();
+
+        setInterval(actualizarCuentaRegresiva, 1000);
+
+
+        /* =========================
+           CONFIRMACIÓN
+        ========================= */
+
+        let adultos = 1;
+        let menores = 0;
+
+
+        function abrirConfirmacion() {
+
+            document.getElementById("modal").style.display = "flex";
+
+        }
+
+
+        function cerrarConfirmacion() {
+
+            document.getElementById("modal").style.display = "none";
+
+        }
+
+
+        function cambiarCantidad(tipo, cantidad) {
+
+            if (tipo === "adultos") {
+
+                adultos += cantidad;
+
+                if (adultos < 1) {
+                    adultos = 1;
+                }
+
+                if (adultos > 20) {
+                    adultos = 20;
+                }
+
+                document.getElementById("adultos").textContent = adultos;
+
+            }
+
+
+            if (tipo === "menores") {
+
+                menores += cantidad;
+
+                if (menores < 0) {
+                    menores = 0;
+                }
+
+                if (menores > 20) {
+                    menores = 20;
+                }
+
+                document.getElementById("menores").textContent = menores;
+
+            }
+
+        }
+
+
+        function confirmarWhatsApp() {
+
+            let mensaje = "Confirmo Asistencia al Cumple! Voy con ";
+
+            mensaje += adultos === 1
+                ? "1 Adulto"
+                : adultos + " Adultos";
+
+
+            if (menores > 0) {
+
+                mensaje += menores === 1
+                    ? " y 1 Menor"
+                    : " y " + menores + " Menores";
+
+            }
+
+
+            mensaje += ".";
+
+
+            const telefono = "5492975276120";
+
+            const url =
+                "https://wa.me/" +
+                telefono +
+                "?text=" +
+                encodeURIComponent(mensaje);
+
+
+            window.open(url, "_blank");
+
+        }
+
+    </script>
+
+</body>
+</html>
