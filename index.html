@@ -998,8 +998,14 @@
             }
         });
 
-        discoverButton.addEventListener("click", () => {
-            reproducirMusica();
+        discoverButton.addEventListener("click", async (event) => {
+            // Primero iniciamos la música con la interacción del usuario
+            // y después dejamos que el enlace haga el scroll.
+            event.preventDefault();
+            await reproducirMusica();
+            document.getElementById("evento").scrollIntoView({
+                behavior: "smooth"
+            });
         });
 
         musica.addEventListener("play", actualizarBotonMusica);
