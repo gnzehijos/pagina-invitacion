@@ -423,6 +423,110 @@
         .whatsapp-button { font-size: 14px; }
         footer { font-size: 13px; }
 
+
+        /* DRESS CODE INTERACTIVO */
+        #dress-code-section {
+            transition: background .45s ease, color .45s ease, border-color .45s ease;
+            border-radius: 4px;
+            padding: 55px 20px;
+        }
+
+        #dress-code-section.dress-selected-white {
+            background: #fff;
+            color: #111;
+        }
+
+        #dress-code-section.dress-selected-white .section-title,
+        #dress-code-section.dress-selected-white .section-heading,
+        #dress-code-section.dress-selected-white .section-text {
+            color: #111;
+        }
+
+        #dress-code-section.dress-selected-black {
+            background: #050505;
+            color: #fff;
+        }
+
+        .dress-code-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .dress-option {
+            width: 140px;
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            letter-spacing: 3px;
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease, border-color .25s ease;
+            touch-action: manipulation;
+        }
+
+        .dress-white {
+            background: #fff;
+            color: #111;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 30px rgba(255,255,255,.08);
+        }
+
+        .dress-black {
+            background: #050505;
+            color: #fff;
+            border: 2px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,.5);
+        }
+
+        .dress-option:hover,
+        .dress-option:focus-visible {
+            transform: translateY(-5px);
+            outline: none;
+        }
+
+        .dress-option.selected {
+            transform: scale(1.06);
+            box-shadow: 0 15px 40px rgba(0,0,0,.35);
+        }
+
+        .dress-option:not(.selected) {
+            opacity: .55;
+        }
+
+        .dress-white.selected {
+            border-color: #111;
+        }
+
+        .dress-black.selected {
+            border-color: #fff;
+        }
+
+        .dress-choice {
+            margin-top: 24px;
+            min-height: 24px;
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 2px;
+            transition: color .35s ease;
+        }
+
+        @media (max-width: 600px) {
+            #dress-code-section {
+                padding: 45px 15px;
+            }
+
+            .dress-option {
+                width: 125px;
+                height: 150px;
+            }
+        }
+
     </style>
 </head>
 
@@ -550,7 +654,7 @@
 
 <!-- TEMÁTICA -->
 
-<section>
+<section id="dress-code-section" class="dress-code-section">
 
     <div class="section-title">
         DRESS CODE
@@ -563,51 +667,24 @@
     <p class="section-text">
         Elegí tu estilo y vení preparado para celebrar.
         La temática es simple:
-        <strong style="color:#fff;">BLANCO</strong> o
-        <strong style="color:#fff;">NEGRO</strong>.
+        <strong>BLANCO</strong> o
+        <strong>NEGRO</strong>.
     </p>
 
-    <div style="
-        display:flex;
-        justify-content:center;
-        gap:15px;
-        margin-top:40px;
-        flex-wrap:wrap;
-    ">
+    <div class="dress-code-options">
 
-        <div style="
-            width:140px;
-            height:170px;
-            background:#fff;
-            color:#111;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-            letter-spacing:3px;
-            font-size:14px;
-            box-shadow:0 10px 30px rgba(255,255,255,.08);
-        ">
+        <button type="button" class="dress-option dress-white" id="dress-white" aria-pressed="false">
             BLANCO
-        </div>
+        </button>
 
-        <div style="
-            width:140px;
-            height:170px;
-            background:#050505;
-            color:#fff;
-            border:1px solid #333;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-            letter-spacing:3px;
-            font-size:14px;
-            box-shadow:0 10px 30px rgba(0,0,0,.5);
-        ">
+        <button type="button" class="dress-option dress-black" id="dress-black" aria-pressed="false">
             NEGRO
-        </div>
+        </button>
 
+    </div>
+
+    <div class="dress-choice" id="dress-choice" aria-live="polite">
+        Elegí BLANCO o NEGRO
     </div>
 
 </section>
@@ -1049,6 +1126,31 @@
         musica.addEventListener("play", actualizarBotonMusica);
         musica.addEventListener("pause", actualizarBotonMusica);
 
+
+        // Dress code interactivo: al tocar Blanco o Negro cambia el color de la sección.
+        const dressSection = document.getElementById('dress-code-section');
+        const whiteOption = document.getElementById('dress-white');
+        const blackOption = document.getElementById('dress-black');
+        const dressChoice = document.getElementById('dress-choice');
+
+        function selectDress(color) {
+            const isWhite = color === 'white';
+            dressSection.classList.toggle('dress-selected-white', isWhite);
+            dressSection.classList.toggle('dress-selected-black', !isWhite);
+
+            whiteOption.classList.toggle('selected', isWhite);
+            blackOption.classList.toggle('selected', !isWhite);
+
+            whiteOption.setAttribute('aria-pressed', String(isWhite));
+            blackOption.setAttribute('aria-pressed', String(!isWhite));
+
+            dressChoice.textContent = isWhite
+                ? 'Elegiste BLANCO 🤍'
+                : 'Elegiste NEGRO 🖤';
+        }
+
+        whiteOption.addEventListener('click', () => selectDress('white'));
+        blackOption.addEventListener('click', () => selectDress('black'));
     </script>
 
 </body>
