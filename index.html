@@ -421,7 +421,7 @@
             </h1>
 
             <div class="hero-date">
-                24 · 10 · 2026 · 21:00 HS
+                <span id="fecha-visible">24 · 10 · 2026 · 21:00 HS</span>
             </div>
 
             <a href="#evento" class="scroll-button" id="discover-button">
@@ -792,7 +792,28 @@
            CUENTA REGRESIVA
         ========================= */
 
-        const fechaEvento = new Date("2026-10-24T21:00:00");
+        // La misma invitación sirve para familia y amigos.
+        // Familia: ?grupo=familia  → 24/10/2026 a las 21:00
+        // Amigos:  ?grupo=amigos   → 25/10/2026 a las 00:00
+        const parametros = new URLSearchParams(window.location.search);
+        const grupo = parametros.get("grupo")?.toLowerCase();
+
+        const configuracionEvento = {
+            familia: {
+                fecha: "2026-10-24T21:00:00",
+                texto: "24 · 10 · 2026 · 21:00 HS"
+            },
+            amigos: {
+                fecha: "2026-10-25T00:00:00",
+                texto: "25 · 10 · 2026 · 00:00 HS"
+            }
+        };
+
+        // Si alguien entra sin parámetro, mostramos la versión familiar.
+        const evento = configuracionEvento[grupo] || configuracionEvento.familia;
+        const fechaEvento = new Date(evento.fecha);
+
+        document.getElementById("fecha-visible").textContent = evento.texto;
 
         function actualizarCuentaRegresiva() {
 
