@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <title>Invitación - Cumpleaños</title>
 
+
     <meta name="description" content="Estás invitado a mi cumpleaños">
+
 
     <style>
         * {
@@ -15,9 +18,11 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
+
 
         body {
             font-family: Georgia, "Times New Roman", serif;
@@ -26,14 +31,17 @@
             overflow-x: hidden;
         }
 
+
         button,
         a {
             font-family: inherit;
         }
 
+
         /* =========================
            PORTADA
         ========================= */
+
 
         .hero {
             min-height: 100svh;
@@ -45,9 +53,11 @@
             position: relative;
             overflow: hidden;
 
+
             background:
                 radial-gradient(circle at 50% 35%, #3a321d 0%, #17140d 40%, #080808 80%);
         }
+
 
         .hero::before {
             content: "";
@@ -60,21 +70,25 @@
             animation: particles 15s linear infinite;
         }
 
+
         @keyframes particles {
             from {
                 transform: translateY(0);
             }
+
 
             to {
                 transform: translateY(-35px);
             }
         }
 
+
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 700px;
         }
+
 
         .small-title {
             letter-spacing: 6px;
@@ -83,6 +97,7 @@
             margin-bottom: 25px;
             animation: fadeDown 1s ease forwards;
         }
+
 
         .hero h1 {
             font-size: clamp(55px, 15vw, 110px);
@@ -93,6 +108,7 @@
             animation: titleIn 1.2s cubic-bezier(.2,.8,.2,1) forwards;
         }
 
+
         .hero-date {
             margin-top: 35px;
             font-size: 18px;
@@ -100,6 +116,7 @@
             color: #fff;
             animation: fadeUp 1s .5s ease both;
         }
+
 
         .scroll-button {
             margin-top: 50px;
@@ -111,11 +128,13 @@
             animation: floating 2s ease-in-out infinite;
         }
 
+
         @keyframes titleIn {
             from {
                 opacity: 0;
                 transform: translateY(60px) scale(.9);
             }
+
 
             to {
                 opacity: 1;
@@ -123,17 +142,20 @@
             }
         }
 
+
         @keyframes fadeDown {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
 
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
 
         @keyframes fadeUp {
             from {
@@ -141,19 +163,145 @@
                 transform: translateY(25px);
             }
 
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
+
         @keyframes floating {
             0%, 100% {
                 transform: translateY(0);
             }
 
+
             50% {
                 transform: translateY(8px);
+            }
+        }
+
+
+
+        /* =========================
+           GLOBOS DE LA PORTADA
+        ========================= */
+
+        .hero-balloons {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 74px;
+            height: 92px;
+            border-radius: 50% 50% 46% 46%;
+            opacity: .9;
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,.28));
+        }
+
+        .balloon::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -7px;
+            transform: translateX(-50%);
+            width: 11px;
+            height: 10px;
+            background: inherit;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 1px;
+            height: 150px;
+            background: rgba(255,255,255,.35);
+            transform: translateX(-50%);
+        }
+
+        .balloon-gold {
+            background: radial-gradient(circle at 32% 25%, #fff4c4 0 8%, #d4af37 38%, #8f7118 100%);
+        }
+
+        .balloon-white {
+            background: radial-gradient(circle at 32% 25%, #fff 0 10%, #f2eee4 48%, #aaa49a 100%);
+        }
+
+        .balloon-black {
+            background: radial-gradient(circle at 32% 25%, #666 0 8%, #202020 42%, #050505 100%);
+        }
+
+        .balloon-1 { left: 5%; top: 8%; transform: rotate(-10deg); }
+        .balloon-2 { right: 7%; top: 11%; transform: rotate(9deg) scale(.92); }
+        .balloon-3 { left: 13%; bottom: 5%; transform: rotate(8deg) scale(.78); }
+        .balloon-4 { right: 13%; bottom: 7%; transform: rotate(-7deg) scale(.82); }
+        .balloon-5 { left: 50%; top: 2%; transform: translateX(-50%) scale(.72); }
+
+        /* =========================
+           REGALO / ALIAS
+        ========================= */
+
+        .gift-alias {
+            margin: 55px auto 0;
+            padding: 30px 25px;
+            max-width: 620px;
+            border: 1px solid rgba(212,175,55,.28);
+            background: rgba(255,255,255,.025);
+        }
+
+        .gift-alias-title {
+            color: #d4af37;
+            font-size: 13px;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+        }
+
+        .gift-alias-name {
+            font-size: clamp(30px, 7vw, 48px);
+            color: #f5e6b3;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+
+        .gift-alias-text {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        @media (max-width: 600px) {
+            .balloon {
+                width: 55px;
+                height: 70px;
+            }
+
+            .balloon::after {
+                height: 105px;
+            }
+
+            .balloon-1 { left: 2%; top: 7%; }
+            .balloon-2 { right: 2%; top: 9%; }
+            .balloon-3 { left: 4%; bottom: 6%; }
+            .balloon-4 { right: 4%; bottom: 7%; }
+            .balloon-5 { top: 3%; }
+
+            .gift-alias {
+                margin-top: 45px;
+                padding: 25px 18px;
+            }
+
+            .gift-alias-text {
+                font-size: 16px;
             }
         }
 
@@ -161,11 +309,13 @@
            SECCIONES
         ========================= */
 
+
         section {
             padding: 90px 25px;
             max-width: 900px;
             margin: auto;
         }
+
 
         .section-title {
             text-align: center;
@@ -175,12 +325,14 @@
             margin-bottom: 20px;
         }
 
+
         .section-heading {
             text-align: center;
             font-size: 38px;
             font-weight: 400;
             margin-bottom: 25px;
         }
+
 
         .section-text {
             text-align: center;
@@ -191,9 +343,12 @@
         }
 
 
+
+
         /* =========================
            FOTOS DEL CUMPLEAÑERO
         ========================= */
+
 
         .birthday-gallery {
             display: grid;
@@ -202,6 +357,7 @@
             max-width: 760px;
             margin: 35px auto 0;
         }
+
 
         .birthday-gallery img {
             width: 100%;
@@ -213,9 +369,11 @@
             box-shadow: 0 12px 35px rgba(0,0,0,.35);
         }
 
+
         /* =========================
            CUENTA REGRESIVA
         ========================= */
+
 
         .countdown {
             display: grid;
@@ -225,6 +383,7 @@
             margin: 40px auto 0;
         }
 
+
         .time-box {
             text-align: center;
             padding: 20px 5px;
@@ -232,11 +391,13 @@
             background: rgba(255,255,255,.03);
         }
 
+
         .time-number {
             display: block;
             font-size: 35px;
             color: #d4af37;
         }
+
 
         .time-label {
             font-size: 10px;
@@ -244,20 +405,24 @@
             color: #999;
         }
 
+
         /* =========================
            UBICACIÓN
         ========================= */
+
 
         .location {
             background: #15130f;
             max-width: none;
         }
 
+
         .location-inner {
             max-width: 900px;
             margin: auto;
             text-align: center;
         }
+
 
         .map-button,
         .guestbook-button,
@@ -273,6 +438,7 @@
             transition: .3s;
         }
 
+
         .map-button:hover,
         .guestbook-button:hover,
         .whatsapp-button:hover {
@@ -280,9 +446,11 @@
             color: #111;
         }
 
+
         /* =========================
            GALERÍA
         ========================= */
+
 
         .gallery {
             display: grid;
@@ -290,6 +458,7 @@
             gap: 10px;
             margin-top: 35px;
         }
+
 
         .gallery img {
             width: 100%;
@@ -299,9 +468,11 @@
             background: #222;
         }
 
+
         /* =========================
            CONFIRMACIÓN
         ========================= */
+
 
         .confirmation {
             background: #0b0b0b;
@@ -309,14 +480,17 @@
             text-align: center;
         }
 
+
         .confirmation-inner {
             max-width: 700px;
             margin: auto;
         }
 
+
         /* =========================
            FOOTER
         ========================= */
+
 
         footer {
             text-align: center;
@@ -327,9 +501,12 @@
         }
 
 
+
+
         /* =========================
            MÚSICA
         ========================= */
+
 
         #music-button {
             position: fixed;
@@ -352,15 +529,18 @@
             transition: .35s ease;
         }
 
+
         #music-button:hover {
             transform: scale(1.08);
             background: #d4af37;
             color: #111;
         }
 
+
         #music-button.playing {
             animation: musicPulse 1.8s ease-in-out infinite;
         }
+
 
         @keyframes musicPulse {
             0%, 100% {
@@ -370,6 +550,7 @@
                 box-shadow: 0 8px 30px rgba(0,0,0,.45), 0 0 0 10px rgba(212,175,55,0);
             }
         }
+
 
         @media (max-width: 600px) {
             #music-button {
@@ -381,34 +562,42 @@
             }
         }
 
+
         @media (max-width: 600px) {
+
 
             .countdown {
                 grid-template-columns: repeat(2, 1fr);
             }
 
+
             .gallery {
                 grid-template-columns: 1fr;
             }
 
+
             .gallery img {
                 height: 280px;
             }
+
 
             .birthday-gallery {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
 
+
             .birthday-gallery img {
                 height: auto;
                 max-height: 520px;
             }
 
+
             section {
                 padding: 75px 20px;
             }
         }
+
 
         /* Ajuste de tipografía */
         .small-title { font-size: 15px; }
@@ -424,6 +613,8 @@
         footer { font-size: 13px; }
 
 
+
+
         /* DRESS CODE INTERACTIVO */
         #dress-code-section {
             transition: background .45s ease, color .45s ease, border-color .45s ease;
@@ -431,10 +622,12 @@
             padding: 55px 20px;
         }
 
+
         #dress-code-section.dress-selected-white {
             background: #fff;
             color: #111;
         }
+
 
         #dress-code-section.dress-selected-white .section-title,
         #dress-code-section.dress-selected-white .section-heading,
@@ -442,10 +635,12 @@
             color: #111;
         }
 
+
         #dress-code-section.dress-selected-black {
             background: #050505;
             color: #fff;
         }
+
 
         .dress-code-options {
             display: flex;
@@ -454,6 +649,7 @@
             margin-top: 40px;
             flex-wrap: wrap;
         }
+
 
         .dress-option {
             width: 140px;
@@ -470,12 +666,14 @@
             touch-action: manipulation;
         }
 
+
         .dress-white {
             background: #fff;
             color: #111;
             border: 2px solid transparent;
             box-shadow: 0 10px 30px rgba(255,255,255,.08);
         }
+
 
         .dress-black {
             background: #050505;
@@ -484,28 +682,34 @@
             box-shadow: 0 10px 30px rgba(0,0,0,.5);
         }
 
+
         .dress-option:hover,
         .dress-option:focus-visible {
             transform: translateY(-5px);
             outline: none;
         }
 
+
         .dress-option.selected {
             transform: scale(1.06);
             box-shadow: 0 15px 40px rgba(0,0,0,.35);
         }
 
+
         .dress-option:not(.selected) {
             opacity: .55;
         }
+
 
         .dress-white.selected {
             border-color: #111;
         }
 
+
         .dress-black.selected {
             border-color: #fff;
         }
+
 
         .dress-choice {
             margin-top: 24px;
@@ -516,10 +720,12 @@
             transition: color .35s ease;
         }
 
+
         @media (max-width: 600px) {
             #dress-code-section {
                 padding: 45px 15px;
             }
+
 
             .dress-option {
                 width: 125px;
@@ -527,56 +733,83 @@
             }
         }
 
+
     </style>
 </head>
 
+
 <body>
+
 
     <!-- MÚSICA -->
     <audio id="musica" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
+
     <button id="music-button" aria-label="Reproducir música" title="Reproducir música">
         ♫
     </button>
 
 
+
+
     <!-- PORTADA -->
+
 
     <header class="hero">
 
+
+        <div class="hero-balloons" aria-hidden="true">
+            <span class="balloon balloon-gold balloon-1"></span>
+            <span class="balloon balloon-white balloon-2"></span>
+            <span class="balloon balloon-black balloon-3"></span>
+            <span class="balloon balloon-gold balloon-4"></span>
+            <span class="balloon balloon-white balloon-5"></span>
+        </div>
+
         <div class="hero-content">
+
 
             <div class="small-title">
                 ESTÁS INVITADO AL
             </div>
+
 
             <h1>
                 Cumple de<br>
                 Chiche
             </h1>
 
+
             <div class="hero-date">
                 <span id="fecha-visible">24 · 10 · 2026 / 21:00 HS</span>
             </div>
+
 
             <a href="#evento" class="scroll-button" id="discover-button">
                 DESCUBRIR INVITACIÓN ↓
             </a>
 
+
         </div>
+
 
     </header>
 
 
+
+
     <!-- INFORMACIÓN -->
 
+
     <section id="evento">
+
 
         <div class="section-title">
             CELEBREMOS JUNTOS
         </div>
+
 
         <h2 class="section-heading">
             ¡Te espero!
@@ -587,57 +820,74 @@
         </div>
 
 
+
+
         <p class="section-text">
             Quiero compartir este momento especial con vos.
             Prepará las ganas de pasarla increíble porque
             se viene una noche para recordar.
         </p>
 
+
         <div class="countdown">
+
 
             <div class="time-box">
                 <span class="time-number" id="days">00</span>
                 <span class="time-label">DÍAS</span>
             </div>
 
+
             <div class="time-box">
                 <span class="time-number" id="hours">00</span>
                 <span class="time-label">HORAS</span>
             </div>
+
 
             <div class="time-box">
                 <span class="time-number" id="minutes">00</span>
                 <span class="time-label">MINUTOS</span>
             </div>
 
+
             <div class="time-box">
                 <span class="time-number" id="seconds">00</span>
                 <span class="time-label">SEGUNDOS</span>
             </div>
 
+
         </div>
+
 
     </section>
 
 
+
+
     <!-- UBICACIÓN -->
+
 
     <section class="location">
 
+
         <div class="location-inner">
+
 
             <div class="section-title">
                 ¿DÓNDE?
             </div>
 
+
             <h2 class="section-heading">
                 Salon Catamarqueño
             </h2>
+
 
             <p class="section-text">
                 Moyano esq Belgrano<br>
                 Pico Truncado, Santa Cruz
             </p>
+
 
             <a
                 class="map-button"
@@ -647,22 +897,30 @@
                 ABRIR EN GOOGLE MAPS
             </a>
 
+
         </div>
+
 
     </section>
 
 
+
+
 <!-- TEMÁTICA -->
 
+
 <section id="dress-code-section" class="dress-code-section">
+
 
     <div class="section-title">
         DRESS CODE
     </div>
 
+
     <h2 class="section-heading">
         Temática Blanco o Negro
     </h2>
+
 
     <p class="section-text">
         Elegí tu estilo y vení preparado para celebrar.
@@ -671,42 +929,56 @@
         <strong>NEGRO</strong>.
     </p>
 
+
     <div class="dress-code-options">
+
 
         <button type="button" class="dress-option dress-white" id="dress-white" aria-pressed="false">
             BLANCO
         </button>
 
+
         <button type="button" class="dress-option dress-black" id="dress-black" aria-pressed="false">
             NEGRO
         </button>
 
+
     </div>
+
 
     <div class="dress-choice" id="dress-choice" aria-live="polite">
         Elegí BLANCO o NEGRO
     </div>
 
+
 </section>
+
+
 
 
     <!-- LIBRO DE FIRMAS -->
 
+
     <section>
+
 
         <div class="section-title">
             DEJAME UN SALUDO
         </div>
 
+
         <h2 class="section-heading">
             Libro de firmas
         </h2>
+
 
         <p class="section-text">
             Podés dejarme un saludo acompañado de una foto.
         </p>
 
+
         <div style="text-align:center;">
+
 
             <a
                 class="guestbook-button"
@@ -716,29 +988,39 @@
                 SUBIR SALUDO + FOTO
             </a>
 
+
         </div>
+
 
     </section>
 
 
+
+
     <!-- CONFIRMACIÓN -->
+
 
     <section class="confirmation">
 
+
         <div class="confirmation-inner">
+
 
             <div class="section-title">
                 CONFIRMÁ TU ASISTENCIA
             </div>
 
+
             <h2 class="section-heading">
                 ¿Venís?
             </h2>
+
 
             <p class="section-text">
                 Confirmá tu asistencia para que podamos
                 preparar todo de la mejor manera.
             </p>
+
 
             <button
                 class="whatsapp-button"
@@ -747,9 +1029,25 @@
                 CONFIRMAR ASISTENCIA
             </button>
 
+
+            <div class="gift-alias">
+                <div class="gift-alias-title">SI NO SABÉS QUÉ REGALAR</div>
+
+                <div class="gift-alias-name">
+                    chichex.re
+                </div>
+
+                <p class="gift-alias-text">
+                    Si no sabes que regalar, este es mí alias, pero mí mejor regalo sería tu compañía esta noche!
+                </p>
+            </div>
+
         </div>
 
+
     </section>
+
+
 
 
     <footer>
@@ -757,9 +1055,12 @@
     </footer>
 
 
+
+
     <!-- =========================
          MODAL CONFIRMACIÓN
     ========================= -->
+
 
     <div
         id="modal"
@@ -775,6 +1076,7 @@
         "
     >
 
+
         <div
             style="
                 width:100%;
@@ -786,16 +1088,21 @@
             "
         >
 
+
             <div class="section-title">
                 CONFIRMACIÓN
             </div>
+
 
             <h2 class="section-heading">
                 ¿Quiénes vienen?
             </h2>
 
 
+
+
             <!-- ADULTOS -->
+
 
             <div
                 style="
@@ -806,9 +1113,12 @@
                 "
             >
 
+
                 <span>Adultos</span>
 
+
                 <div style="display:flex;align-items:center;gap:20px;">
+
 
                     <button
                         onclick="cambiarCantidad('adultos',-1)"
@@ -817,9 +1127,11 @@
                         −
                     </button>
 
+
                     <span id="adultos">
                         1
                     </span>
+
 
                     <button
                         onclick="cambiarCantidad('adultos',1)"
@@ -828,12 +1140,17 @@
                         +
                     </button>
 
+
                 </div>
+
 
             </div>
 
 
+
+
             <!-- MENORES -->
+
 
             <div
                 style="
@@ -844,9 +1161,12 @@
                 "
             >
 
+
                 <span>Menores</span>
 
+
                 <div style="display:flex;align-items:center;gap:20px;">
+
 
                     <button
                         onclick="cambiarCantidad('menores',-1)"
@@ -855,9 +1175,11 @@
                         −
                     </button>
 
+
                     <span id="menores">
                         0
                     </span>
+
 
                     <button
                         onclick="cambiarCantidad('menores',1)"
@@ -866,9 +1188,13 @@
                         +
                     </button>
 
+
                 </div>
 
+
             </div>
+
+
 
 
             <button
@@ -880,7 +1206,11 @@
             </button>
 
 
+
+
             <br>
+
+
 
 
             <button
@@ -896,22 +1226,29 @@
                 CANCELAR
             </button>
 
+
         </div>
+
 
     </div>
 
 
+
+
     <script>
+
 
         /* =========================
            CUENTA REGRESIVA
         ========================= */
+
 
         // La misma invitación sirve para familia y amigos.
         // Familia: ?grupo=familia  → 24/10/2026 a las 21:00
         // Amigos:  ?grupo=amigos   → 25/10/2026 a las 00:00
         const parametros = new URLSearchParams(window.location.search);
         const grupo = parametros.get("grupo")?.toLowerCase();
+
 
         const configuracionEvento = {
             familia: {
@@ -924,17 +1261,23 @@
             }
         };
 
+
         // Si alguien entra sin parámetro, mostramos la versión familiar.
         const evento = configuracionEvento[grupo] || configuracionEvento.familia;
         const fechaEvento = new Date(evento.fecha);
 
+
         document.getElementById("fecha-visible").textContent = evento.texto;
+
 
         function actualizarCuentaRegresiva() {
 
+
             const ahora = new Date();
 
+
             const diferencia = fechaEvento - ahora;
+
 
             if (diferencia <= 0) {
                 document.getElementById("days").textContent = "00";
@@ -944,122 +1287,172 @@
                 return;
             }
 
+
             const dias = Math.floor(
                 diferencia / (1000 * 60 * 60 * 24)
             );
+
 
             const horas = Math.floor(
                 (diferencia / (1000 * 60 * 60)) % 24
             );
 
+
             const minutos = Math.floor(
                 (diferencia / (1000 * 60)) % 60
             );
+
 
             const segundos = Math.floor(
                 (diferencia / 1000) % 60
             );
 
+
             document.getElementById("days").textContent =
                 String(dias).padStart(2, "0");
+
 
             document.getElementById("hours").textContent =
                 String(horas).padStart(2, "0");
 
+
             document.getElementById("minutes").textContent =
                 String(minutos).padStart(2, "0");
+
 
             document.getElementById("seconds").textContent =
                 String(segundos).padStart(2, "0");
         }
 
+
         actualizarCuentaRegresiva();
 
+
         setInterval(actualizarCuentaRegresiva, 1000);
+
+
 
 
         /* =========================
            CONFIRMACIÓN
         ========================= */
 
+
         let adultos = 1;
         let menores = 0;
 
 
+
+
         function abrirConfirmacion() {
+
 
             document.getElementById("modal").style.display = "flex";
 
+
         }
+
+
 
 
         function cerrarConfirmacion() {
 
+
             document.getElementById("modal").style.display = "none";
+
 
         }
 
 
+
+
         function cambiarCantidad(tipo, cantidad) {
+
 
             if (tipo === "adultos") {
 
+
                 adultos += cantidad;
+
 
                 if (adultos < 1) {
                     adultos = 1;
                 }
 
+
                 if (adultos > 20) {
                     adultos = 20;
                 }
 
+
                 document.getElementById("adultos").textContent = adultos;
+
 
             }
 
 
+
+
             if (tipo === "menores") {
 
+
                 menores += cantidad;
+
 
                 if (menores < 0) {
                     menores = 0;
                 }
 
+
                 if (menores > 20) {
                     menores = 20;
                 }
 
+
                 document.getElementById("menores").textContent = menores;
 
+
             }
+
 
         }
 
 
+
+
         function confirmarWhatsApp() {
 
+
             let mensaje = "Confirmo Asistencia al Cumple! Voy con ";
+
 
             mensaje += adultos === 1
                 ? "1 Adulto"
                 : adultos + " Adultos";
 
 
+
+
             if (menores > 0) {
+
 
                 mensaje += menores === 1
                     ? " y 1 Menor"
                     : " y " + menores + " Menores";
 
+
             }
+
+
 
 
             mensaje += ".";
 
 
+
+
             const telefono = "5492975276120";
+
 
             const url =
                 "https://wa.me/" +
@@ -1068,18 +1461,25 @@
                 encodeURIComponent(mensaje);
 
 
+
+
             window.open(url, "_blank");
 
+
         }
+
+
 
 
         /* =========================
            MÚSICA
         ========================= */
 
+
         const musica = document.getElementById("musica");
         const musicButton = document.getElementById("music-button");
         const discoverButton = document.getElementById("discover-button");
+
 
         function actualizarBotonMusica() {
             if (musica.paused) {
@@ -1095,6 +1495,7 @@
             }
         }
 
+
         async function reproducirMusica() {
             try {
                 await musica.play();
@@ -1104,6 +1505,7 @@
             }
         }
 
+
         musicButton.addEventListener("click", () => {
             if (musica.paused) {
                 reproducirMusica();
@@ -1112,6 +1514,7 @@
                 actualizarBotonMusica();
             }
         });
+
 
         discoverButton.addEventListener("click", async (event) => {
             // Primero iniciamos la música con la interacción del usuario
@@ -1123,8 +1526,11 @@
             });
         });
 
+
         musica.addEventListener("play", actualizarBotonMusica);
         musica.addEventListener("pause", actualizarBotonMusica);
+
+
 
 
         // Dress code interactivo: al tocar Blanco o Negro cambia el color de la sección.
@@ -1133,25 +1539,31 @@
         const blackOption = document.getElementById('dress-black');
         const dressChoice = document.getElementById('dress-choice');
 
+
         function selectDress(color) {
             const isWhite = color === 'white';
             dressSection.classList.toggle('dress-selected-white', isWhite);
             dressSection.classList.toggle('dress-selected-black', !isWhite);
 
+
             whiteOption.classList.toggle('selected', isWhite);
             blackOption.classList.toggle('selected', !isWhite);
 
+
             whiteOption.setAttribute('aria-pressed', String(isWhite));
             blackOption.setAttribute('aria-pressed', String(!isWhite));
+
 
             dressChoice.textContent = isWhite
                 ? 'Elegiste BLANCO 🤍'
                 : 'Elegiste NEGRO 🖤';
         }
 
+
         whiteOption.addEventListener('click', () => selectDress('white'));
         blackOption.addEventListener('click', () => selectDress('black'));
     </script>
+
 
 </body>
 </html>
